@@ -10,7 +10,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
         LoginView loginView = new LoginView();
         Scene scene = new Scene(loginView.getView(), 800, 600);
-        scene.getStylesheets().add(getClass().getResource("styles/style.css").toExternalForm());
+        // scene.getStylesheets().add(getClass()
+        // .getResource("/home/as-aravinthakshan/Desktop/OOPenheimer/src/styles/syles.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("Hospital Management System");
         primaryStage.show();
