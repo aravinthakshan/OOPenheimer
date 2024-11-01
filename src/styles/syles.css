@@ -1,0 +1,24 @@
+.root {
+    -fx-font-family: "Arial";
+    -fx-padding: 20px;
+}
+
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+}
+
+.button {
+    -fx-background-color: #5A9;
+    -fx-text-fill: white;
+    -fx-padding: 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+.text-field, .password-field, .choice-box {
+    -fx-padding: 10px;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
