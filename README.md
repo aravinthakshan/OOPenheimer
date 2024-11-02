@@ -2,6 +2,10 @@
 
 A JavaFX-based Healthcare Management System designed to manage appointments and user credentials for doctors and patients. This project allows doctors to view and manage their appointments and allows patients to book or reschedule appointments. It also includes secure login and sign-up features for both doctors and patients, with relevant user details stored in JSON files.
 
+# **Shell Script**
+
+**run.sh**: A shell script to simplify running the JavaFX application. This script sets up the necessary JavaFX libraries and launches the application.
+
 ## Features
 - **Login and Sign-Up System**: Users can sign up and log in as either a doctor or a patient. User credentials, including additional details, are securely stored in JSON files.
 - **Doctor Dashboard**:
@@ -29,9 +33,6 @@ The project is structured into several Java classes, each responsible for differ
 - **credentials.json**: Stores user credentials and additional details for both doctors and patients.
 - **appointments.json**: Stores the appointment details, including doctor name, patient name, date, and time.
 
-# **Shell Script**
-
-**run.sh**: A shell script to simplify running the JavaFX application. This script sets up the necessary JavaFX libraries and launches the application.
 
 ## JSON File Structure
 ### `credentials.json`
