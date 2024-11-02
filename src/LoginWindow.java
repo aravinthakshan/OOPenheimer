@@ -18,16 +18,14 @@ public class LoginWindow {
     }
 
     private void showLogin() {
-        VBox layout = new VBox(15); // Increased spacing for a cleaner layout
+        VBox layout = new VBox(15);
         layout.setPadding(new Insets(30));
         layout.setStyle(
                 "-fx-background-color: #ffffff; -fx-border-color: #dddddd; -fx-border-width: 1px; -fx-border-radius: 5px;");
 
-        // Title Label
         Label titleLabel = new Label(userType.equals("doctor") ? "Doctor Login" : "Patient Login");
         titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
-        // Input Fields
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.setStyle(
@@ -38,7 +36,6 @@ public class LoginWindow {
         passwordField.setStyle(
                 "-fx-padding: 10px; -fx-background-color: #f5f5f5; -fx-border-radius: 5px; -fx-border-color: #cccccc;");
 
-        // Buttons
         Button loginButton = new Button("Login");
         loginButton.setStyle(
                 "-fx-background-color: #0078d4; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-background-radius: 5px; -fx-border-radius: 5px;");
@@ -46,7 +43,6 @@ public class LoginWindow {
         signUpButton.setStyle(
                 "-fx-background-color: #0078d4; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-background-radius: 5px; -fx-border-radius: 5px;");
 
-        // Event Handlers
         loginButton.setOnAction(e -> handleLogin(usernameField.getText(), passwordField.getText()));
         signUpButton.setOnAction(e -> new SignUpWindow(stage, userType));
 

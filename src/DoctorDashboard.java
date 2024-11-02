@@ -14,7 +14,7 @@ import java.io.File;
 public class DoctorDashboard {
     private Stage stage;
     private String username;
-    private ListView<String> appointmentListView; // Declare as a class-level variable
+    private ListView<String> appointmentListView;
 
     public DoctorDashboard(Stage stage, String username) {
         this.stage = stage;
@@ -28,7 +28,6 @@ public class DoctorDashboard {
         layout.setStyle(
                 "-fx-background-color: #ffffff; -fx-border-color: #dddddd; -fx-border-width: 1px; -fx-border-radius: 5px;");
 
-        // Load Doctor Details
         String specialization = "Unknown";
         String contact = "Unknown";
 
@@ -46,28 +45,23 @@ public class DoctorDashboard {
             e.printStackTrace();
         }
 
-        // Welcome Message
         Label welcomeLabel = new Label("Welcome, " + username);
         welcomeLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
-        // Doctor Details
         Label specializationLabel = new Label("Specialization: " + specialization);
         Label contactLabel = new Label("Contact: " + contact);
         specializationLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #555555;");
         contactLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #555555;");
 
-        // Appointment List Label
         Label appointmentLabel = new Label("Your Appointments:");
         appointmentLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
-        // Appointment List View
         appointmentListView = new ListView<>(); // Initialize the ListView
         ObservableList<String> appointments = FXCollections.observableArrayList();
         loadAppointments(appointments);
         appointmentListView.setItems(appointments);
         appointmentListView.setStyle("-fx-border-radius: 5px; -fx-background-color: #f9f9f9;");
 
-        // Buttons
         Button viewDetailsButton = new Button("View Patient Details");
         viewDetailsButton.setStyle(
                 "-fx-background-color: #0078d4; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px 20px; -fx-background-radius: 5px; -fx-border-radius: 5px;");

@@ -26,25 +26,21 @@ public class SignUpWindow {
         layout.setStyle(
                 "-fx-background-color: #ffffff; -fx-border-color: #dddddd; -fx-border-width: 1px; -fx-border-radius: 5px;");
 
-        // Title
         Label titleLabel = new Label(userType.equals("doctor") ? "Doctor Sign Up" : "Patient Sign Up");
         titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
-        // Input Fields
         TextField usernameField = new TextField();
         usernameField.setPromptText("Username");
 
         PasswordField passwordField = new PasswordField();
         passwordField.setPromptText("Password");
 
-        // Additional Fields for Doctor
         TextField specializationField = new TextField();
         specializationField.setPromptText("Specialization (e.g., Cardiologist)");
 
         TextField contactField = new TextField();
         contactField.setPromptText("Contact Number");
 
-        // Patient-specific fields
         TextField ageField = new TextField();
         ageField.setPromptText("Age");
 
@@ -62,14 +58,11 @@ public class SignUpWindow {
                 specializationField.getText(), contactField.getText(), ageField.getText(),
                 sexComboBox.getValue(), bloodGroupField.getText()));
 
-        // Add elements to layout
         layout.getChildren().addAll(titleLabel, usernameField, passwordField);
 
-        // Add doctor-specific fields only if user is a doctor
         if (userType.equals("doctor")) {
             layout.getChildren().addAll(specializationField, contactField);
         } else {
-            // Add patient-specific fields
             layout.getChildren().addAll(ageField, sexComboBox, bloodGroupField);
         }
 
@@ -85,7 +78,6 @@ public class SignUpWindow {
             JSONParser parser = new JSONParser();
             JSONObject credentials;
 
-            // Read existing data
             try (FileReader reader = new FileReader("credentials.json")) {
                 credentials = (JSONObject) parser.parse(reader);
             } catch (IOException | ParseException e) {
@@ -102,7 +94,6 @@ public class SignUpWindow {
                 return;
             }
 
-            // Create a user object with the necessary details
             JSONObject userDetails = new JSONObject();
             userDetails.put("password", password);
 
@@ -115,9 +106,8 @@ public class SignUpWindow {
                 userDetails.put("bloodGroup", bloodGroup);
             }
 
-            userCredentials.put(username, userDetails); // Store the details
+            userCredentials.put(username, userDetails);
 
-            // Save updated data back to the file
             try (FileWriter writer = new FileWriter("credentials.json")) {
                 writer.write(credentials.toJSONString());
             }

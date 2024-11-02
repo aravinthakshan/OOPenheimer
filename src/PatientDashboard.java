@@ -111,30 +111,25 @@ public class PatientDashboard {
         layout.setStyle(
                 "-fx-background-color: #ffffff; -fx-border-color: #dddddd; -fx-border-width: 1px; -fx-border-radius: 5px;");
 
-        // Welcome Message
         Label welcomeLabel = new Label("Welcome, " + username);
         welcomeLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
-        // Patient Details Section
         Label patientDetailsLabel = new Label("Patient Details:");
         patientDetailsLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;");
         Label bloodGroupLabel = new Label("Blood Group: B+");
         Label ageLabel = new Label("Age: 29");
         Label sexLabel = new Label("Sex: Male");
 
-        // Book Appointment Button
         Button bookAppointmentButton = new Button("Book Appointment");
         bookAppointmentButton.setStyle("-fx-background-color: #0078d4; -fx-text-fill: white; -fx-font-size: 14px; " +
                 "-fx-padding: 10px 20px; -fx-background-radius: 5px; -fx-border-radius: 5px;");
         bookAppointmentButton.setOnAction(e -> new AppointmentBookingPage(stage, username)); // Navigate to booking page
 
-        // Previous Visits Section
         Label previousVisitsLabel = new Label("Previous Visits:");
         previousVisitsLabel.setStyle("-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
         TableView<Visit> previousVisitsTable = createPreviousVisitsTable();
 
-        // Layout Setup
         layout.getChildren().addAll(
                 welcomeLabel,
                 patientDetailsLabel, bloodGroupLabel, ageLabel, sexLabel,
@@ -155,7 +150,7 @@ public class PatientDashboard {
         summaryColumn.setCellValueFactory(data -> data.getValue().summaryProperty());
         table.getColumns().addAll(doctorColumn, dateColumn, summaryColumn);
 
-        // Dummy data for previous visits
+        // Dummy data
         table.setItems(FXCollections.observableArrayList(
                 new Visit("Dr. Smith", "2024-09-15", "Routine Checkup"),
                 new Visit("Dr. Jones", "2024-08-20", "Follow-up")));
@@ -179,20 +174,16 @@ class AppointmentBookingPage {
     }
 
     private void showBookingPage() {
-        // Title
         Label titleLabel = new Label("Book or Reschedule Appointment");
         titleLabel.setStyle("-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333333;");
 
-        // Doctor ComboBox
         doctorComboBox = new ComboBox<>();
         doctorComboBox.setPromptText("Select Doctor");
         doctorComboBox.getItems().addAll("Dr. Smith", "Dr. Jones");
 
-        // Date Picker
         datePicker = new DatePicker();
         datePicker.setPromptText("Select Date");
 
-        // Time Slot ComboBox
         timeSlotComboBox = new ComboBox<>();
         timeSlotComboBox.setPromptText("Select Time Slot");
         allTimeSlots = FXCollections.observableArrayList(
@@ -200,7 +191,6 @@ class AppointmentBookingPage {
                 "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM");
         timeSlotComboBox.setItems(FXCollections.observableArrayList(allTimeSlots));
 
-        // Buttons
         Button checkAvailabilityButton = new Button("Check Availability");
         checkAvailabilityButton.setOnAction(e -> checkAvailability());
 
@@ -214,11 +204,10 @@ class AppointmentBookingPage {
                 "-fx-padding: 10px 20px; -fx-background-radius: 5px; -fx-border-radius: 5px;");
         backButton.setOnAction(e -> new PatientDashboard(stage, username));
 
-        // Layout: Use a GridPane for form elements
         GridPane gridPane = new GridPane();
-        gridPane.setHgap(10); // Horizontal gap between columns
-        gridPane.setVgap(10); // Vertical gap between rows
-        gridPane.setPadding(new Insets(20)); // Padding around the grid
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20));
         gridPane.add(new Label("Select Doctor:"), 0, 0);
         gridPane.add(doctorComboBox, 1, 0);
         gridPane.add(new Label("Select Date:"), 0, 1);
@@ -227,24 +216,20 @@ class AppointmentBookingPage {
         gridPane.add(timeSlotComboBox, 1, 2);
         gridPane.add(checkAvailabilityButton, 1, 3);
 
-        // Button Layout: Use HBox for confirm and back buttons
-        HBox buttonBox = new HBox(10); // 10px spacing between buttons
+        HBox buttonBox = new HBox(10);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.getChildren().addAll(confirmButton, backButton);
 
-        // Main Layout: Use VBox to combine everything
-        VBox mainLayout = new VBox(20); // 20px spacing between elements
+        VBox mainLayout = new VBox(20);
         mainLayout.setPadding(new Insets(20));
         mainLayout.setAlignment(Pos.TOP_CENTER);
         mainLayout.getChildren().addAll(titleLabel, gridPane, buttonBox);
 
-        // Scene Setup
         Scene scene = new Scene(mainLayout, 500, 450);
         stage.setScene(scene);
     }
 
     private void checkAvailability() {
-        // Same logic as before
         String doctor = doctorComboBox.getValue();
         String date = datePicker.getValue() != null ? datePicker.getValue().toString() : null;
 
@@ -258,10 +243,8 @@ class AppointmentBookingPage {
             FileReader reader = new FileReader("appointments.json");
             JSONArray appointmentsArray = (JSONArray) parser.parse(reader);
 
-            // Reset the timeSlotComboBox to show all time slots
             timeSlotComboBox.setItems(FXCollections.observableArrayList(allTimeSlots));
 
-            // Collect unavailable slots
             ObservableList<String> unavailableSlots = FXCollections.observableArrayList();
             for (Object obj : appointmentsArray) {
                 JSONObject appointment = (JSONObject) obj;
@@ -270,7 +253,6 @@ class AppointmentBookingPage {
                 }
             }
 
-            // Remove unavailable slots from the timeSlotComboBox
             timeSlotComboBox.getItems().removeAll(unavailableSlots);
 
             showAlert("Available slots updated. Unavailable slots have been removed.");
@@ -281,7 +263,6 @@ class AppointmentBookingPage {
     }
 
     private void bookAppointment() {
-        // Same logic as before
         String doctor = doctorComboBox.getValue();
         String date = datePicker.getValue() != null ? datePicker.getValue().toString() : null;
         String time = timeSlotComboBox.getValue();
@@ -307,7 +288,6 @@ class AppointmentBookingPage {
             newAppointment.put("date", date);
             newAppointment.put("time", time);
 
-            // Remove any existing appointment for the same patient
             appointments.removeIf(obj -> ((JSONObject) obj).get("patient").equals(username));
 
             appointments.add(newAppointment);
