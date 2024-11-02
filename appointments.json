@@ -1,1 +1,23 @@
-[{"doctor":"doc1","date":"2024-11-01","patient":"pat1","time":"09:00 AM"},{"doctor":"ara","date":"2024-11-13","patient":"aer","time":"11:00 AM"},{"doctor":"ara","date":"2024-11-13","patient":"aer","time":"11:00 AM"}]
+[
+    {
+      "doctor": "Dr. Smith",
+      "date": "2024-09-15",
+      "summary": "Routine Checkup",
+      "patient": "p1",
+      "time": "10:00 AM"
+    },
+    {
+      "doctor": "Dr. Jones",
+      "date": "2024-08-20",
+      "summary": "Follow-up",
+      "patient": "p1",
+      "time": "02:00 PM"
+    },
+    {
+      "doctor": "Dr. Jones",
+      "date": "2024-11-07",
+      "patient": "p2",
+      "time": "04:00 PM"
+    }
+  ]
+  
