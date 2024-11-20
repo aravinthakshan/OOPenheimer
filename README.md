@@ -100,4 +100,5 @@ The project is structured into several Java classes, each responsible for differ
 
 ## Prerequisites
 - **Java 8 or later**: Ensure you have a compatible version of Java installed.
-- **JavaFX**: Make sure JavaFX is properly set up in your environment.
+- **JavaFX**: Make sure JavaFX is properly set up in your environment. Version: javafx-sdk-17.0.13
+- **Rewrite run.sh**: when you clone the repo
